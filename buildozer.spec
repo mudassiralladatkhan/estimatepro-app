@@ -36,7 +36,6 @@ android.api = 33
 android.ndk = 25b
 
 # Python-for-Android (p4a) settings
-p4a.branch = master
 p4a.bootstrap = sdl2
 
 # Architecture

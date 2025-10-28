@@ -15,45 +15,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Build APK with Buildozer Docker
+      uses: ArtemSBulgakov/buildozer-action@v1
+      id: buildozer
       with:
-        python-version: '3.11'
-    
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y --no-install-recommends \
-          python3-pip build-essential git zip unzip openjdk-17-jdk \
-          autoconf automake libtool libtool-bin pkg-config \
-          libffi-dev libssl-dev zlib1g-dev libbz2-dev \
-          libreadline-dev libsqlite3-dev llvm \
-          libncurses5-dev libncursesw5-dev xz-utils tk-dev \
-          libgdbm-dev liblzma-dev wget gettext cmake
-        # Install libtinfo6 (or libtinfo5 as fallback)
-        if ! sudo apt-get install -y libtinfo6; then
-          sudo apt-get install -y libtinfo5 || true
-        fi
-    
-    - name: Install Cython and Buildozer
-      run: |
-        pip install --upgrade pip
-        pip install --upgrade cython==0.29.36 buildozer
-        pip install --upgrade python-for-android
-    
-    - name: Cache Buildozer
-      uses: actions/cache@v3
-      with:
-        path: |
-          .buildozer
-        key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
-        restore-keys: |
-          ${{ runner.os }}-buildozer-
-    
-    - name: Build APK with Buildozer
-      run: |
-        # Accept all prompts and build
-        yes | buildozer -v android debug
+        command: buildozer android debug
+        buildozer_version: stable
         
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
