@@ -22,13 +22,17 @@ jobs:
     
     - name: Install system dependencies
       run: |
-        sudo apt update
-        sudo apt install -y python3-pip build-essential git zip unzip openjdk-17-jdk \
-          autoconf automake libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev \
-          cmake libffi-dev libssl-dev gettext
+        sudo apt-get update
+        sudo apt-get install -y --no-install-recommends \
+          python3-pip build-essential git zip unzip openjdk-17-jdk \
+          autoconf automake libtool libtool-bin pkg-config \
+          libffi-dev libssl-dev zlib1g-dev libbz2-dev \
+          libreadline-dev libsqlite3-dev llvm \
+          libncurses5-dev libncursesw5-dev xz-utils tk-dev \
+          libgdbm-dev liblzma-dev wget gettext cmake
         # Install libtinfo6 (or libtinfo5 as fallback)
-        if ! sudo apt install -y libtinfo6; then
-          sudo apt install -y libtinfo5 || true
+        if ! sudo apt-get install -y libtinfo6; then
+          sudo apt-get install -y libtinfo5 || true
         fi
     
     - name: Install Cython and Buildozer
