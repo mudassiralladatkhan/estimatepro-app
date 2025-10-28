@@ -35,6 +35,9 @@ android.minapi = 21
 android.api = 33
 android.ndk = 25b
 
+# Accept Android SDK licenses automatically (useful for CI)
+android.accept_sdk_license = True
+
 # Python-for-Android (p4a) settings
 p4a.bootstrap = sdl2
 
