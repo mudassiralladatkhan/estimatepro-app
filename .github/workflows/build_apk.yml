@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: kivy/buildozer:latest
+      options: --user root
     
     steps:
     - name: Checkout code
@@ -19,11 +20,8 @@ jobs:
     
     - name: Build APK with Buildozer
       run: |
-        export PIP_USER=0
         yes | buildozer android debug
       timeout-minutes: 60
-      env:
-        PIP_USER: "0"
         
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
