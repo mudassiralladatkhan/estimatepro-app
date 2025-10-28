@@ -1,0 +1,106 @@
+================================================================================
+ESTIMATEPRO - APK BUILD INSTRUCTIONS
+================================================================================
+
+Since you're on Windows without WSL installed, here are your options to build the APK:
+
+================================================================================
+OPTION 1: INSTALL WSL AND BUILD (RECOMMENDED)
+================================================================================
+
+STEP 1: Install WSL
+-------------------
+1. Open PowerShell as Administrator
+2. Run: wsl --install
+3. Restart your computer when prompted
+4. After restart, open Ubuntu from Start Menu
+5. Complete the Ubuntu setup (create username/password)
+
+STEP 2: Build APK in WSL
+-------------------------
+Once WSL is installed, open Ubuntu terminal and run:
+
+cd /mnt/c/Users/Hp/Desktop/myproject
+
+sudo apt update
+sudo apt install -y python3-pip python3-venv openjdk-17-jdk git zip unzip libffi-dev libssl-dev liblzma-dev zlib1g-dev
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install cython buildozer
+
+buildozer android debug
+
+Your APK will be in: bin/estimatepro-1.0.0-debug.apk
+
+================================================================================
+OPTION 2: USE GITHUB ACTIONS (CLOUD BUILD)
+================================================================================
+
+STEP 1: Install Git
+-------------------
+1. Download Git from: https://git-scm.com/download/win
+2. Install Git with default options
+
+STEP 2: Create GitHub Repository
+---------------------------------
+1. Go to: https://github.com/new
+2. Create a new repository named "estimatepro"
+3. Copy the repository URL
+
+STEP 3: Push Your Code
+-----------------------
+Open PowerShell in your project folder and run:
+
+cd C:\Users\Hp\Desktop\myproject
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin YOUR_GITHUB_URL_HERE
+git push -u origin main
+
+STEP 4: Build APK
+-----------------
+1. Go to your GitHub repository
+2. Click on "Actions" tab
+3. The workflow will automatically start building
+4. Wait for build to complete (takes 10-20 minutes)
+5. Download the APK from the Actions artifacts
+
+================================================================================
+OPTION 3: USE ONLINE BUILD SERVICE
+================================================================================
+
+Alternative services:
+1. P4A-Helper: http://p4a.byethost7.com/buildozer/
+2. Gitpod: https://gitpod.io
+
+================================================================================
+PROJECT CONFIGURATION
+================================================================================
+
+✅ Your buildozer.spec is configured with:
+- All dependencies: python3, kivy, pyrebase4, requests, urllib3
+- All assets included: *.jpg files, assests/ folder, screens/
+- Android API 33, min API 21
+- Architecture: arm64-v8a
+
+✅ Features included:
+- Firebase authentication
+- All 11 calculation screens
+- Dashboard with icons
+- All images and logos
+
+================================================================================
+CONTACT & SUPPORT
+================================================================================
+
+If you encounter issues:
+1. Make sure you have internet connection
+2. Check that all .jpg images are in the correct folders
+3. Ensure your Android device supports ARM64 architecture
+
+================================================================================
+
