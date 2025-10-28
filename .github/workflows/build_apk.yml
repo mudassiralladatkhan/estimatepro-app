@@ -25,7 +25,11 @@ jobs:
         sudo apt update
         sudo apt install -y python3-pip build-essential git zip unzip openjdk-17-jdk \
           autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev \
-          libtinfo5 cmake libffi-dev libssl-dev
+          cmake libffi-dev libssl-dev
+        # Install libtinfo6 (or libtinfo5 as fallback)
+        if ! sudo apt install -y libtinfo6; then
+          sudo apt install -y libtinfo5 || true
+        fi
     
     - name: Install Cython and Buildozer
       run: |
