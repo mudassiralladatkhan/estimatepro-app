@@ -19,7 +19,7 @@ jobs:
     
     - name: Build APK with Buildozer
       run: |
-        buildozer android debug
+        yes | buildozer android debug
       timeout-minutes: 60
         
     - name: Upload APK Artifact
