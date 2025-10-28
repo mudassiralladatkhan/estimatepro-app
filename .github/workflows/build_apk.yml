@@ -12,30 +12,44 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.11'
     
     - name: Install system dependencies
       run: |
         sudo apt update
-        sudo apt install -y python3-pip python3-venv openjdk-17-jdk git zip unzip libffi-dev libssl-dev liblzma-dev zlib1g-dev
+        sudo apt install -y python3-pip build-essential git zip unzip openjdk-17-jdk \
+          autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev \
+          libtinfo5 cmake libffi-dev libssl-dev
     
-    - name: Install buildozer
+    - name: Install Cython and Buildozer
       run: |
         pip install --upgrade pip
-        pip install cython buildozer
+        pip install --upgrade cython==0.29.36 buildozer
     
-    - name: Build APK
+    - name: Cache Buildozer
+      uses: actions/cache@v3
+      with:
+        path: |
+          .buildozer
+        key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
+        restore-keys: |
+          ${{ runner.os }}-buildozer-
+    
+    - name: Build APK with Buildozer
       run: |
-        buildozer android debug
+        yes | buildozer android debug
         
-    - name: Upload APK
-      uses: actions/upload-artifact@v3
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      if: success()
       with:
         name: estimatepro-apk
         path: bin/*.apk
+        retention-days: 30
 
