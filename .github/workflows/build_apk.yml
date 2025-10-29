@@ -17,10 +17,35 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up Python
+      run: |
+        apt-get update -y
+        apt-get install -y python3-pip
+    
+    - name: Install dependencies
+      run: |
+        # Disable virtualenv and force system pip
+        unset VIRTUAL_ENV
+        export PIP_USER=0
+        export PYTHONPATH=
+        
+        # Ensure pip uses system site-packages
+        python3 -m pip install --upgrade pip
+        python3 -m pip install --no-user appdirs colorama>=0.3.3 jinja2 sh>=1.10,<2.0 build toml packaging setuptools
+        
+        # Install additional dependencies that might be needed
+        apt-get install -y zip unzip openjdk-11-jdk
     
     - name: Build APK with Buildozer
       run: |
-        yes | buildozer android debug
+        # Fix permissions
+        chmod +x build_apk.sh
+        
+        # Run buildozer with debug output
+        yes | buildozer -v android debug
       timeout-minutes: 60
         
     - name: Upload APK Artifact

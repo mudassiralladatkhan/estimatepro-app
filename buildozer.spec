@@ -12,7 +12,7 @@ version = 1.0.0
 
 # Include file types and folders
 source.include_exts = py,png,jpg,kv,atlas
-include_patterns = assests/*,screens/*,*.jpg
+include_patterns = assests/*,screens/*,*.jpg,.github/*
 
 # Exclude unnecessary folders
 exclude_patterns = tests/*,__pycache__/*
@@ -33,7 +33,7 @@ requirements = python3,kivy,pyrebase4,requests,urllib3<2,certifi,chardet,idna
 # Android API levels
 android.minapi = 21
 android.api = 33
-android.ndk = 25b
+android.ndk = 23b
 
 # Accept Android SDK licenses automatically (useful for CI)
 android.accept_sdk_license = True
