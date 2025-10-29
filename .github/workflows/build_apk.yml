@@ -10,21 +10,34 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: kivy/buildozer:latest
-      options: --user 0:0 -e HOME=/root
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
     
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          git zip unzip openjdk-17-jdk wget \
+          autoconf libtool pkg-config zlib1g-dev \
+          libncurses5-dev libncursesw5-dev libtinfo5 \
+          cmake libffi-dev libssl-dev \
+          ccache autoconf automake libtool gettext
+    
+    - name: Install Buildozer and dependencies
+      run: |
+        pip install --upgrade pip setuptools wheel
+        pip install --upgrade buildozer cython==0.29.33
+        pip install --upgrade python-for-android
+    
     - name: Build APK with Buildozer
       run: |
-        # Disable virtualenv to prevent pip --user conflicts
-        unset VIRTUAL_ENV
-        export PYTHONPATH=
-        
-        # Run buildozer with verbose output and auto-accept prompts
         yes | buildozer -v android debug
       timeout-minutes: 60
         
