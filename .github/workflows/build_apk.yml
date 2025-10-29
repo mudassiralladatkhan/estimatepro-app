@@ -40,7 +40,11 @@ jobs:
         apt-get install -y zip unzip openjdk-11-jdk git wget
         
         # Fix potential permission issues
-        chmod -R 755 .
+        chmod -R 777 .
+        
+        # Create temp directory with proper permissions
+        mkdir -p /tmp
+        chmod 777 /tmp
     
     - name: Build APK with Buildozer
       run: |
