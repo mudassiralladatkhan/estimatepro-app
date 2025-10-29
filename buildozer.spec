@@ -23,9 +23,6 @@ android.permissions = INTERNET
 # Orientation
 orientation = portrait
 
-# Icon and splash (optional)
-# icon.filename is unset to avoid Gradle/AAPT resource errors with non-PNG icons
-
 # Dependencies
 # Pin urllib3<2 to keep urllib3.contrib.appengine available for pyrebase4
 requirements = python3,kivy,pyrebase4,requests,urllib3<2,certifi,chardet,idna
@@ -51,17 +48,14 @@ log_level = 2
 # Package format
 package.format = apk
 
-# Optional metadata (only one line allowed)
-
-
-# Optional debug settings
+# Debug settings
 android.debug = 1
 android.allow_backup = 0
 android.logcat_filters = *:S python:D
 
-# Optional OpenGL
+# OpenGL
 android.opengl_version = 2
 
-# Optional AndroidX support
+# AndroidX support
 android.use_androidx = 1
 android.enable_jetifier = 1

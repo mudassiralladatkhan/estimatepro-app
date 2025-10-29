@@ -20,46 +20,34 @@ jobs:
       with:
         fetch-depth: 0
     
-    - name: Set up Python
+    - name: Set up environment
       run: |
         apt-get update -y
-        apt-get install -y python3-pip python3-dev build-essential
+        apt-get install -y python3-pip python3-dev build-essential zip unzip openjdk-11-jdk git wget
+        mkdir -p /tmp
+        chmod 777 /tmp
+        chmod -R 777 .
     
-    - name: Install dependencies
+    - name: Install Python dependencies
       run: |
         # Disable virtualenv and force system pip
         unset VIRTUAL_ENV
         export PIP_USER=0
         export PYTHONPATH=
         
-        # Ensure pip uses system site-packages
+        # Install required packages
         python3 -m pip install --upgrade pip
         python3 -m pip install --no-user appdirs colorama>=0.3.3 jinja2 sh>=1.10,<2.0 build toml packaging setuptools wheel
-        
-        # Install additional dependencies that might be needed
-        apt-get install -y zip unzip openjdk-11-jdk git wget
-        
-        # Fix potential permission issues
-        chmod -R 777 .
-        
-        # Create temp directory with proper permissions
-        mkdir -p /tmp
-        chmod 777 /tmp
     
     - name: Build APK with Buildozer
       run: |
-        # Fix permissions
-        chmod +x build_apk.sh
-        
         # Run buildozer with debug output
         yes | buildozer -v android debug
       timeout-minutes: 60
-        
-    - name: Upload APK Artifact
-      uses: actions/upload-artifact@v4
-      if: success()
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
       with:
         name: estimatepro-apk
         path: bin/*.apk
-        retention-days: 30
 
