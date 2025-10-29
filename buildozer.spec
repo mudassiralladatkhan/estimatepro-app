@@ -33,7 +33,7 @@ requirements = python3,kivy,pyrebase4,requests,urllib3<2,certifi,chardet,idna
 # Android API levels
 android.minapi = 21
 android.api = 33
-android.ndk = 23b
+android.ndk = 25b
 
 # Accept Android SDK licenses automatically (useful for CI)
 android.accept_sdk_license = True

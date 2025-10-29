@@ -23,7 +23,7 @@ jobs:
     - name: Set up Python
       run: |
         apt-get update -y
-        apt-get install -y python3-pip
+        apt-get install -y python3-pip python3-dev build-essential
     
     - name: Install dependencies
       run: |
@@ -34,10 +34,13 @@ jobs:
         
         # Ensure pip uses system site-packages
         python3 -m pip install --upgrade pip
-        python3 -m pip install --no-user appdirs colorama>=0.3.3 jinja2 sh>=1.10,<2.0 build toml packaging setuptools
+        python3 -m pip install --no-user appdirs colorama>=0.3.3 jinja2 sh>=1.10,<2.0 build toml packaging setuptools wheel
         
         # Install additional dependencies that might be needed
-        apt-get install -y zip unzip openjdk-11-jdk
+        apt-get install -y zip unzip openjdk-11-jdk git wget
+        
+        # Fix potential permission issues
+        chmod -R 755 .
     
     - name: Build APK with Buildozer
       run: |
