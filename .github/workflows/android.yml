@@ -29,11 +29,11 @@ jobs:
       - name: Build debug APK with Buildozer Docker
         run: |
           docker run --rm \
-            -v "${GITHUB_WORKSPACE}":/home/buildozer/build \
-            -v "$HOME/.buildozer":/home/buildozer/.buildozer \
-            -w /home/buildozer/build \
-            -e HOME=/home/buildozer \
-            -u buildozer \
+            -v "${GITHUB_WORKSPACE}":/home/user/build \
+            -v "$HOME/.buildozer":/home/user/.buildozer \
+            -w /home/user/build \
+            -e HOME=/home/user \
+            -u user \
             kivy/buildozer \
             -v android debug
 
