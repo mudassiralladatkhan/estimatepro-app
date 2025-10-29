@@ -42,19 +42,25 @@ class AuthScreen(Screen):
         email = self.email_input.text
         password = self.password_input.text
         try:
+            if auth is None:
+                self.message_label.text = "Firebase not initialized. Check internet."
+                return
             auth.sign_in_with_email_and_password(email, password)
             self.message_label.text = f"Welcome back, {email}"
             self.manager.current = 'dashboard'
-        except Exception:
-            self.message_label.text = "Invalid credentials or network error."
+        except Exception as e:
+            self.message_label.text = f"Error: {str(e)[:50]}"
 
     def sign_up(self, instance):
         email = self.email_input.text
         password = self.password_input.text
         try:
+            if auth is None:
+                self.message_label.text = "Firebase not initialized. Check internet."
+                return
             auth.create_user_with_email_and_password(email, password)
             self.message_label.text = f"Account created for {email}"
             self.manager.current = 'dashboard'
-        except Exception:
-            self.message_label.text = "Error creating account. Try again."
+        except Exception as e:
+            self.message_label.text = f"Error: {str(e)[:50]}"
 

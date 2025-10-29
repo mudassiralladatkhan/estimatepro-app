@@ -4,8 +4,8 @@ package.name = estimatepro
 package.domain = org.estimatepro
 source.dir = .
 source.include_exts = py,png,jpg,jpeg,kv,txt
-source.include_patterns = assests/*,screens/*,*.jpg,*.txt
-version = 0.1.0
+source.include_patterns = assests/*,screens/*,*.jpg,*.txt,*.py
+version = 0.1.1
 
 # Dependencies - Complete list for pyrebase4 and Firebase
 requirements = python3==3.11.0,kivy==2.3.0,openssl,pyrebase4,requests,urllib3<2,certifi,chardet,idna,pycryptodome,python-jwt,gcloud,sseclient,requests-toolbelt

@@ -65,9 +65,25 @@ class DashboardScreen(Screen):
         self.add_widget(root)
 
     def open_estimator(self, category_name):
-        
-            screen_name = category_name.lower().replace(" ", "_")
+        # Map category names to actual screen names
+        screen_map = {
+            "Concrete": "concrete",
+            "Steel": "steel",
+            "Bricks": "bricks",
+            "Plaster": "plaster",
+            "Paint": "paint",
+            "Tiles": "tiles",
+            "Excavation": "excavation",
+            "Blocks": "blocks",
+            "AntiTermite": "antitermite",
+            "SlopeFilling": "slopefilling",
+            "WaterTank": "watertank"
+        }
+        screen_name = screen_map.get(category_name, category_name.lower())
+        if self.manager.has_screen(screen_name):
             self.manager.current = screen_name
+        else:
+            print(f"Screen '{screen_name}' not found!")
 
 
 
