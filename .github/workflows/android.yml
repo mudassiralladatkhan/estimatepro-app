@@ -1,0 +1,44 @@
+name: Build Android APK (Buildozer)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up cache for .buildozer
+        uses: actions/cache@v4
+        with:
+          path: ~/.buildozer
+          key: buildozer-${{ runner.os }}-${{ hashFiles('buildozer.spec') }}
+          restore-keys: |
+            buildozer-${{ runner.os }}-
+
+      - name: Ensure buildozer cache directory exists
+        run: |
+          mkdir -p ~/.buildozer
+
+      - name: Build debug APK with Buildozer Docker
+        run: |
+          docker run --rm \
+            -v "${GITHUB_WORKSPACE}":/home/buildozer/build \
+            -v "$HOME/.buildozer":/home/buildozer/.buildozer \
+            -w /home/buildozer/build \
+            kivy/buildozer \
+            buildozer android debug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: EstimatePro-debug-apk
+          path: bin/*.apk
+          if-no-files-found: error
+

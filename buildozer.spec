@@ -1,61 +1,33 @@
 [app]
-
-# Main Python file
-source.dir = .
-source.main = main.py
-
-# App metadata
 title = EstimatePro
 package.name = estimatepro
-package.domain = org.nithyashree
-version = 1.0.0
-
-# Include file types and folders
-source.include_exts = py,png,jpg,kv,atlas
-include_patterns = assests/*,screens/*,*.jpg,.github/*
-
-# Exclude unnecessary folders
-exclude_patterns = tests/*,__pycache__/*,.git/*,.github/*,venv/*,.venv/*
-
-# Permissions
-android.permissions = INTERNET
-
-# Orientation
+package.domain = org.estimatepro
+source.dir = .
+source.include_exts = py,png,jpg,jpeg,kv
+version = 0.1.0
+requirements = python3,kivy,pyrebase4,requests,urllib3,certifi,idna,chardet,requests_toolbelt,sseclient,oauth2client,pycryptodome,google-auth,cachecontrol
 orientation = portrait
-
-# Dependencies
-# Pin urllib3<2 to keep urllib3.contrib.appengine available for pyrebase4
-requirements = python3,kivy,pyrebase4,requests,urllib3<2,certifi,chardet,idna
-
-# Android API levels
+fullscreen = 0
+android.permissions = INTERNET
+android.api = 31
 android.minapi = 21
-android.api = 33
-android.ndk = 23b
+android.ndk = 25b
+android.archs = arm64-v8a, armeabi-v7a
+android.release_artifact = bin/*.apk
 
-# Accept Android SDK licenses automatically (useful for CI)
-android.accept_sdk_license = True
-
-# Python-for-Android (p4a) settings
-p4a.bootstrap = sdl2
-
-# Architecture
-android.archs = arm64-v8a
-
-# Entry settings
-fullscreen = 1
+# Entry point
+requirements.hostpython =
+presplash.filename =
+icon.filename =
 log_level = 2
+use_androidx = 1
 
-# Package format
-package.format = apk
+[buildozer]
+log_level = 2
+warn_on_root = 0
 
-# Debug settings
-android.debug = 1
-android.allow_backup = 0
-android.logcat_filters = *:S python:D
+[app:android]
+# Keep python files bytecode compiled
+android.keep_classes =
 
-# OpenGL
-android.opengl_version = 2
 
-# AndroidX support
-android.use_androidx = 1
-android.enable_jetifier = 1
