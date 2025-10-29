@@ -32,6 +32,8 @@ jobs:
             -v "${GITHUB_WORKSPACE}":/home/buildozer/build \
             -v "$HOME/.buildozer":/home/buildozer/.buildozer \
             -w /home/buildozer/build \
+            -e HOME=/home/buildozer \
+            -u buildozer \
             kivy/buildozer \
             -v android debug
 
