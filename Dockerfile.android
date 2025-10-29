@@ -1,0 +1,11 @@
+FROM kivy/buildozer:latest
+
+ENV HOME=/home/buildozer
+WORKDIR /home/buildozer/app
+
+# Copy project into the container
+COPY . /home/buildozer/app
+
+# Build a debug APK
+RUN buildozer -v android debug
+

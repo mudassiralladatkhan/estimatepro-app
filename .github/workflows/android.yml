@@ -14,28 +14,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up cache for .buildozer
-        uses: actions/cache@v4
-        with:
-          path: ~/.buildozer
-          key: buildozer-${{ runner.os }}-${{ hashFiles('buildozer.spec') }}
-          restore-keys: |
-            buildozer-${{ runner.os }}-
-
-      - name: Ensure buildozer cache directory exists
+      - name: Build Docker image that compiles APK
         run: |
-          mkdir -p ~/.buildozer
+          docker build -t estimatepro-android -f Dockerfile.android .
 
-      - name: Build debug APK with Buildozer Docker
+      - name: Run container to build APK
         run: |
-          docker run --rm \
-            -v "${GITHUB_WORKSPACE}":/home/user/build \
-            -v "$HOME/.buildozer":/home/user/.buildozer \
-            -w /home/user/build \
-            -e HOME=/home/user \
-            -u user \
-            kivy/buildozer \
-            -v android debug
+          docker rm -f estimatepro-build || true
+          docker run --name estimatepro-build estimatepro-android
+
+      - name: Copy APKs out of container
+        run: |
+          rm -rf bin
+          docker cp estimatepro-build:/home/buildozer/app/bin ./bin
+
+      - name: Clean up container
+        if: always()
+        run: docker rm -f estimatepro-build || true
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
