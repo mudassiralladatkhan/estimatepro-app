@@ -1,0 +1,4 @@
+Kivy
+pyrebase4
+requests
+
