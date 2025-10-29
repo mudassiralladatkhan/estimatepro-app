@@ -15,7 +15,7 @@ source.include_exts = py,png,jpg,kv,atlas
 include_patterns = assests/*,screens/*,*.jpg,.github/*
 
 # Exclude unnecessary folders
-exclude_patterns = tests/*,__pycache__/*
+exclude_patterns = tests/*,__pycache__/*,.git/*,.github/*,venv/*,.venv/*
 
 # Permissions
 android.permissions = INTERNET
